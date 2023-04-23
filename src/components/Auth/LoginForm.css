@@ -1,4 +1,4 @@
-.form {
+.login {
   background-color: rgb(168, 178, 175);
   border-radius: 5px;
   width: 550px;
@@ -6,14 +6,17 @@
   padding: 20px;
   text-align: center;
 }
-.form-body {
+.body {
   text-align: left;
   padding: 20px 10px;
 }
-.form-body {
+.body {
   padding: 10px;
 }
-.form input {
+.login lable {
+  text-align: center;
+}
+.login input {
   width: 60%;
   display: flex;
   width: 500px;
@@ -22,12 +25,12 @@
   border: 1px solid lightgray;
   margin: 15px auto;
 }
-.footer {
+.foo {
   text-align: center;
-  size: 50px;
-  padding: 20px;
+  size: 100px;
+  padding: 30px;
 }
-.footer button {
+.foo button {
   background-color: rgb(182, 182, 177);
-  padding: 10px;
+  padding: 10px 20px;
 }
