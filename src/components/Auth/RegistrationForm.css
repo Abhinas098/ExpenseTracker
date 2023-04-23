@@ -1,0 +1,36 @@
+body {
+  background: linear-gradient(#25384b, #bdc3c7);
+}
+.form {
+  background-color: rgb(168, 178, 175);
+  border-radius: 5px;
+  width: 550px;
+  margin: 100px auto;
+  padding: 20px;
+  text-align: center;
+}
+.form-body {
+  text-align: left;
+  padding: 20px 10px;
+}
+.form-body {
+  padding: 10px;
+}
+.form input {
+  width: 60%;
+  display: flex;
+  width: 500px;
+  height: 50px;
+  background-color: white;
+  border: 1px solid lightgray;
+  margin: 15px auto;
+}
+.footer {
+  text-align: center;
+  size: 50px;
+  padding: 20px;
+}
+.footer button {
+  background-color: rgb(182, 182, 177);
+  padding: 10px;
+}
