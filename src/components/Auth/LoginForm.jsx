@@ -87,6 +87,7 @@ function LoginForm() {
       <p>
         Don't Have an account? <Link to="/register">Register</Link>
       </p>
+      <Link to="/forget"><i>Forget password</i></Link>
     </form>
   );
 }

@@ -2,8 +2,8 @@
   background-color: rgb(168, 178, 175);
   border-radius: 5px;
   width: 550px;
-  margin: 100px auto;
-  padding: 20px;
+  margin: 70px auto;
+  padding: 10px;
   text-align: center;
 }
 .body {
@@ -20,15 +20,10 @@
   width: 60%;
   display: flex;
   width: 500px;
-  height: 50px;
+  height: 45px;
   background-color: white;
   border: 1px solid lightgray;
-  margin: 15px auto;
-}
-.foo {
-  text-align: center;
-  size: 100px;
-  padding: 30px;
+  margin: 10px auto;
 }
 .foo button {
   background-color: rgb(182, 182, 177);
