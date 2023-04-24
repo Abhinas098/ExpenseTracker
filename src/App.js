@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import AuthContext from "./store/AuthContext";
 import LoginForm from "./components/Auth/LoginForm";
 import RegistrationForm from "./components/Auth/RegistrationForm";
+import Profile from "./components/Auth/Profile/Profile";
 
 function App() {
   const ctx = useContext(AuthContext);
@@ -29,6 +30,11 @@ function App() {
         {ctx.isLogin && (
           <Route path="/home">
             <Home />
+          </Route>
+        )}
+        {ctx.isLogin && (
+          <Route path="/profile">
+            <Profile />
           </Route>
         )}
       </Switch>

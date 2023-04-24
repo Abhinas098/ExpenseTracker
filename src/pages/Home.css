@@ -1,0 +1,10 @@
+
+.header {
+  font-size: medium;
+}
+.expense {
+  float: left;
+}
+.profile {
+  float: right;
+}
