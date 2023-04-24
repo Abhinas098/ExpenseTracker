@@ -1,15 +1,15 @@
 import React, { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Profile.css";
-import AuthContext from "../../../store/AuthContext";
+import AuthContext from "../../store/AuthContext";
 
 const Profile = () => {
   const nameRef = useRef();
   const urlRef = useRef();
   const ctx = useContext(AuthContext);
 
-  const [getName,setGetName] = useState('')
-  const [getPhoto,setPhoto] = useState('')
+  const [getName, setGetName] = useState("");
+  const [getPhoto, setPhoto] = useState("");
   fetch(
     "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyC5RfB2zeAPwPIykibRKYnL7KdPnkq49Bw",
     {
@@ -34,15 +34,14 @@ const Profile = () => {
       }
     })
     .then((data) => {
-      setGetName(data.users[0].displayName)
-      setPhoto(data.users[0].photoUrl)
-
+      setGetName(data.users[0].displayName);
+      setPhoto(data.users[0].photoUrl);
     })
     .catch((err) => {
       console.log(err.message);
-    })
+    });
 
-    console.log(getName,getPhoto);
+  console.log(getName, getPhoto);
   const submitHandler = (e) => {
     e.preventDefault();
     const name = nameRef.current.value;
@@ -96,7 +95,7 @@ const Profile = () => {
         <form onSubmit={submitHandler} className="pro">
           <h2>Contact Details</h2>
           <label>Full Name:</label>
-          <input type="text" ref={nameRef} defaultValue={getName}/>
+          <input type="text" ref={nameRef} defaultValue={getName} />
           <label>Photo Url:</label>
           <input type="url" ref={urlRef} defaultValue={getPhoto} />
           <br />

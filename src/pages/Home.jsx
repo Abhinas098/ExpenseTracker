@@ -43,7 +43,7 @@ const Home = () => {
   };
   return (
     <>
-      <header className="header">
+      <header className="head">
         <h3 className="expense">Well-Come to ExpenseTracker</h3>
         <h3 className="profile">
           Your profile is incomplete <Link to="Profile">Complete now</Link>
