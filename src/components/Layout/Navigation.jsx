@@ -34,6 +34,11 @@ const Navigation = () => {
           )}
           {isLoggedIn && (
             <li>
+              <Link to="/expense">Add Expense</Link>
+            </li>
+          )}
+          {isLoggedIn && (
+            <li>
               <button onClick={logoutHandler}>Logout</button>
             </li>
           )}

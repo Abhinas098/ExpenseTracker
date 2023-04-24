@@ -8,6 +8,7 @@ import RegistrationForm from "./components/Auth/RegistrationForm";
 import Profile from "./components/Profile/Profile";
 import Layout from "./components/Layout/layout";
 import ForgetPasswordForm from "./components/Auth/ForgetPasswordForm";
+import Expenses from "./components/Expenses/Expenses";
 
 function App() {
   const ctx = useContext(AuthContext);
@@ -44,6 +45,11 @@ function App() {
             {ctx.isLogin && <Profile />}
             {!ctx.isLogin && <Redirect to="/login" />}
           </Route>
+          {ctx.isLogin && (
+            <Route path="/expense">
+              <Expenses />
+            </Route>
+          )}
 
           {!ctx.isLogin && (
             <Route path="*">

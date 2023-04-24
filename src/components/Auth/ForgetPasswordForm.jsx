@@ -29,6 +29,7 @@ const ForgetPasswordForm = () => {
             if (data && data.error && data.error.message) {
               errorMsg = data.error.message;
             }
+            alert(errorMsg);
             throw new Error(errorMsg);
           });
         }
@@ -46,7 +47,12 @@ const ForgetPasswordForm = () => {
         <h2>Forgot Password</h2>
         <i>Enter your registered email to reset your password.</i>
         <div className="form-body">
-          <input type="email" id="email" placeholder="Enter Registered Email" ref={emailRef} />
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter Registered Email"
+            ref={emailRef}
+          />
         </div>
         <button type="submit" className="btn">
           Send link
