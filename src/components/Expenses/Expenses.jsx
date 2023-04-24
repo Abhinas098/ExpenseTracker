@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SingleExpense from "./SingleExpense";
 
 const Expenses = () => {
@@ -14,6 +14,46 @@ const Expenses = () => {
     setCategory(e.target.value);
   };
 
+  const getExpenses = () => {
+    fetch(
+      "https://expense-tracker-864ea-default-rtdb.firebaseio.com/expense.json",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          res.json().then((data) => {
+            let errorMsg = "Authotication Failed";
+            if (data && data.error && data.error.message) {
+              errorMsg = data.error.message;
+            }
+            throw new Error(errorMsg);
+          });
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        let arr = [];
+        for (let key in data) {
+          arr.push({
+            desc: data[key].desc,
+            amount: data[key].amount,
+            category: data[key].category,
+          });
+        }
+        setExpenses(arr);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const expenseFormHandler = (e) => {
     e.preventDefault();
     const data = {
@@ -21,6 +61,24 @@ const Expenses = () => {
       desc: desc,
       category: category,
     };
+
+    fetch(
+      "https://expense-tracker-864ea-default-rtdb.firebaseio.com/expense.json",
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        alert(err);
+      });
+
     setExpenses((prevExp) => {
       let newExpense = [...prevExp];
       newExpense.push(data);
@@ -30,6 +88,10 @@ const Expenses = () => {
     setDesc("");
     setCategory(initialState);
   };
+  useEffect(() => {
+    getExpenses();
+    console.log(expenses);
+  }, []);
   return (
     <>
       <div className="form">
