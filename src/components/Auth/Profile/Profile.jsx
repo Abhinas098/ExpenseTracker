@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Profile.css";
 import AuthContext from "../../../store/AuthContext";
@@ -8,11 +8,45 @@ const Profile = () => {
   const urlRef = useRef();
   const ctx = useContext(AuthContext);
 
+  const [getName,setGetName] = useState('')
+  const [getPhoto,setPhoto] = useState('')
+  fetch(
+    "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyC5RfB2zeAPwPIykibRKYnL7KdPnkq49Bw",
+    {
+      method: "POST",
+      body: JSON.stringify({ idToken: ctx.token }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  )
+    .then((res) => {
+      if (res.ok) {
+        return res.json();
+      } else {
+        res.json().then((data) => {
+          let errorMsg = "Authotication Failed";
+          if (data && data.error && data.error.message) {
+            errorMsg = data.error.message;
+          }
+          throw new Error(errorMsg);
+        });
+      }
+    })
+    .then((data) => {
+      setGetName(data.users[0].displayName)
+      setPhoto(data.users[0].photoUrl)
+
+    })
+    .catch((err) => {
+      console.log(err.message);
+    })
+
+    console.log(getName,getPhoto);
   const submitHandler = (e) => {
     e.preventDefault();
     const name = nameRef.current.value;
     const url = urlRef.current.value;
-
     fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyC5RfB2zeAPwPIykibRKYnL7KdPnkq49Bw",
       {
@@ -62,9 +96,9 @@ const Profile = () => {
         <form onSubmit={submitHandler} className="pro">
           <h2>Contact Details</h2>
           <label>Full Name:</label>
-          <input type="text" ref={nameRef} />
+          <input type="text" ref={nameRef} defaultValue={getName}/>
           <label>Photo Url:</label>
-          <input type="url" ref={urlRef} />
+          <input type="url" ref={urlRef} defaultValue={getPhoto} />
           <br />
           <button className="btn">Update</button>
         </form>
