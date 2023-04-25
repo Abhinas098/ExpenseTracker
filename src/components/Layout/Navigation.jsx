@@ -9,6 +9,7 @@ const Navigation = () => {
 
   const logoutHandler = () => {
     authCtx.logout();
+    localStorage.removeItem('email')
   };
   return (
     <header className="header">

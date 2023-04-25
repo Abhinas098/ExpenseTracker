@@ -50,7 +50,8 @@ function LoginForm() {
         }
       })
       .then((data) => {
-        console.log(data.idToken);
+        localStorage.setItem("email", data.email.replace(/[@.]/g, ""));
+
         authCtx.login(data.idToken);
         history.replace("./home");
       })
@@ -87,7 +88,9 @@ function LoginForm() {
       <p>
         Don't Have an account? <Link to="/register">Register</Link>
       </p>
-      <Link to="/forget"><i>Forget password</i></Link>
+      <Link to="/forget">
+        <i>Forget password</i>
+      </Link>
     </form>
   );
 }
