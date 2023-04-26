@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import SingleExpense from "./SingleExpense";
+import { useDispatch } from "react-redux";
+import { expenseAction } from "../../store/expense";
 
 const Expenses = () => {
   const [expenses, setExpenses] = useState([]);
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState(0);
   const [desc, setDesc] = useState("");
   const [isEdit, setEdit] = useState(false);
   const [expenseId, setExpenseId] = useState(null);
@@ -12,6 +14,8 @@ const Expenses = () => {
     return value;
   };
   const [category, setCategory] = useState(initialState);
+
+  const dispatch = useDispatch();
   const email = localStorage.getItem("email");
   const categoryHandler = (e) => {
     setCategory(e.target.value);
@@ -51,6 +55,8 @@ const Expenses = () => {
           });
         }
         setExpenses(arr);
+        localStorage.setItem("allExpense", JSON.stringify(arr));
+        dispatch(expenseAction.addExpenses(expenses));
       })
       .catch((err) => {
         console.log(err);
@@ -66,6 +72,9 @@ const Expenses = () => {
         desc: desc,
         category: category,
       };
+      dispatch(expenseAction.addAmount(amount));
+      dispatch(expenseAction.addDesc(desc));
+      dispatch(expenseAction.addCategory(category));
       fetch(
         `https://expense-tracker-864ea-default-rtdb.firebaseio.com/${email}/${expenseId}.json`,
         {
@@ -92,6 +101,10 @@ const Expenses = () => {
         desc: desc,
         category: category,
       };
+
+      dispatch(expenseAction.addAmount(amount));
+      dispatch(expenseAction.addDesc(desc));
+      dispatch(expenseAction.addCategory(category));
 
       fetch(
         `https://expense-tracker-864ea-default-rtdb.firebaseio.com/${email}.json`,
