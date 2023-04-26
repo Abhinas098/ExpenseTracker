@@ -1,12 +1,12 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Profile.css";
-import AuthContext from "../../store/AuthContext";
+import { useSelector } from "react-redux";
 
 const Profile = () => {
   const nameRef = useRef();
   const urlRef = useRef();
-  const ctx = useContext(AuthContext);
+  const token = useSelector((state) => state.auth.token);
 
   const [getName, setGetName] = useState("");
   const [getPhoto, setPhoto] = useState("");
@@ -14,7 +14,7 @@ const Profile = () => {
     "https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyC5RfB2zeAPwPIykibRKYnL7KdPnkq49Bw",
     {
       method: "POST",
-      body: JSON.stringify({ idToken: ctx.token }),
+      body: JSON.stringify({ idToken: token }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -51,7 +51,7 @@ const Profile = () => {
       {
         method: "POST",
         body: JSON.stringify({
-          idToken: ctx.token,
+          idToken: token,
           displayName: name,
           photoUrl: url,
           returnSecureToken: true,

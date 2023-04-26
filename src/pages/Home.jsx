@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "./Home.css";
-import AuthContext from "../store/AuthContext";
+import { useSelector } from "react-redux";
 
 const Home = () => {
-  const ctx = useContext(AuthContext);
+  const token = useSelector((state) => state.auth.token);
 
   const emailHandler = (e) => {
     e.preventDefault();
@@ -14,7 +14,7 @@ const Home = () => {
         method: "POST",
         body: JSON.stringify({
           requestType: "VERIFY_EMAIL",
-          idToken: ctx.token,
+          idToken: token,
         }),
         headers: {
           "Content-Type": "application/json",

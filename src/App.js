@@ -1,62 +1,65 @@
-import React, { useContext } from "react";
+import React from "react";
 
 import { Redirect, Route, Switch } from "react-router-dom";
 import Home from "./pages/Home";
-import AuthContext from "./store/AuthContext";
 import LoginForm from "./components/Auth/LoginForm";
 import RegistrationForm from "./components/Auth/RegistrationForm";
 import Profile from "./components/Profile/Profile";
 import Layout from "./components/Layout/layout";
 import ForgetPasswordForm from "./components/Auth/ForgetPasswordForm";
 import Expenses from "./components/Expenses/Expenses";
+import { useSelector } from "react-redux";
 
 function App() {
-  const ctx = useContext(AuthContext);
+  const isLogin = useSelector((state) => state.auth.isLoggedin);
+  console.log(isLogin);
   return (
     <>
       <Layout>
         <Switch>
-          <Route path="/" exact>
-            <Redirect to="login" />
-          </Route>
+          {!isLogin && (
+            <Route path="/" exact>
+              <Redirect to="login" />
+            </Route>
+          )}
 
-          {!ctx.isLogin && (
+          {!isLogin && (
             <Route path="/login">
               <LoginForm />
             </Route>
           )}
 
-          {!ctx.isLogin && (
+          {!isLogin && (
             <Route path="/register">
               <RegistrationForm />
             </Route>
           )}
-          {!ctx.isLogin && (
+          {!isLogin && (
             <Route path="/forget">
               <ForgetPasswordForm />
             </Route>
           )}
-          {ctx.isLogin && (
+          {isLogin && (
             <Route path="/home">
               <Home />
             </Route>
           )}
           <Route path="/profile">
-            {ctx.isLogin && <Profile />}
-            {!ctx.isLogin && <Redirect to="/login" />}
+            {isLogin && <Profile />}
+            {!isLogin && <Redirect to="/login" />}
           </Route>
-          {ctx.isLogin && (
+          {isLogin && (
             <Route path="/expense">
               <Expenses />
             </Route>
           )}
 
-          {!ctx.isLogin && (
+          {!isLogin && (
             <Route path="*">
               <Redirect to="/login" />
             </Route>
           )}
-          {ctx.isLogin && (
+          {isLogin && (
             <Route path="*">
               <Redirect to="/home" />
             </Route>

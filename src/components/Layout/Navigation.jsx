@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
 import "./Navigation.css";
-import { useContext } from "react";
-import AuthContext from "../../store/AuthContext";
+import { useDispatch, useSelector } from "react-redux";
+import { authAction } from "../../store/auth";
 
 const Navigation = () => {
-  const authCtx = useContext(AuthContext);
-  const isLoggedIn = authCtx.isLogin;
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedin);
 
   const logoutHandler = () => {
-    authCtx.logout();
-    localStorage.removeItem('email')
+    dispatch(authAction.logout());
+    localStorage.removeItem("email");
+    localStorage.removeItem("token");
   };
   return (
     <header className="header">
