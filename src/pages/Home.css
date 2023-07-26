@@ -5,12 +5,12 @@
   float: left;
 }
 .profile {
-  float: right;
+  float: center;
 }
 .verify {
   background-color: rgb(168, 178, 175);
   border-radius: 5px;
-  width: 550px;
+  width: fit-content;
   margin: 100px auto;
   padding: 20px;
   text-align: center;

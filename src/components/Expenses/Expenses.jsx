@@ -27,7 +27,7 @@ const Expenses = () => {
 
   const getExpenses = useCallback(() => {
     fetch(
-      `https://expense-tracker-864ea-default-rtdb.firebaseio.com/${email}.json`,
+      `https://chat-app-891e9-default-rtdb.firebaseio.com/${email}.json`,
       {
         method: "GET",
         headers: {
@@ -81,7 +81,7 @@ const Expenses = () => {
       dispatch(expenseAction.addDesc(desc));
       dispatch(expenseAction.addCategory(category));
       fetch(
-        `https://expense-tracker-864ea-default-rtdb.firebaseio.com/${email}/${expenseId}.json`,
+        `https://chat-app-891e9-default-rtdb.firebaseio.com/${email}/${expenseId}.json`,
         {
           method: "PUT",
           body: JSON.stringify(data),
@@ -112,7 +112,7 @@ const Expenses = () => {
       dispatch(expenseAction.addCategory(category));
 
       fetch(
-        `https://expense-tracker-864ea-default-rtdb.firebaseio.com/${email}.json`,
+        `https://chat-app-891e9-default-rtdb.firebaseio.com/${email}.json`,
         {
           method: "POST",
           body: JSON.stringify(data),
@@ -154,7 +154,7 @@ const Expenses = () => {
 
   const deleteHandler = (id) => {
     fetch(
-      `https://expense-tracker-864ea-default-rtdb.firebaseio.com/${email}/${id}.json`,
+      `https://chat-app-891e9-default-rtdb.firebaseio.com/${email}/${id}.json`,
       {
         method: "DELETE",
         headers: {

@@ -53,3 +53,21 @@
   background-color: #3d559b;
   color: #363238;
 }
+
+@media screen and (max-width:400px) {
+
+  .header {
+    width:auto;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 5%;
+  }
+  .logo {
+    font-size: 1rem;
+  }
+
+  .header li {
+    margin: 0 0.3rem;
+  }
+  
+}

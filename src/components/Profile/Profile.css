@@ -1,7 +1,7 @@
 .pro {
   background-color: rgb(168, 178, 175);
   border-radius: 5px;
-  width: 550px;
+  width: fit-content;
   margin: 100px auto;
   padding: 20px;
   text-align: center;
@@ -9,7 +9,7 @@
 .pro input {
   width: 60%;
   display: flex;
-  width: 500px;
+  width: 300px;
   height: 50px;
   background-color: white;
   border: 1px solid lightgray;
